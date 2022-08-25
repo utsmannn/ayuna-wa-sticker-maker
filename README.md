@@ -36,10 +36,48 @@ https://ayuna-sticker.herokuapp.com/start
 - **Not yet** support for gif
 
 # How to own my number
+## Preparation
 - Fork this project
 - Setup Java 17 with enable preview
 - Setup environment
   - Authentication QR code
     - `USERNAME` 
     - `PASSWORD`
-  - 
+  - Phone number
+    - `PHONE_NUMBER`
+## On services whatsapp
+- Run Project
+- Start qr generator
+```
+http://localhost:8080/qr
+```
+- Submit your authentication
+## On user whatsapp
+- Start endpoint for redirect to whatsapp share api
+```
+http://localhost:8080/start
+```
+
+# Limitation
+- On localhost, sometimes socket not connected, so wait a second on your whatsapp screen after scanning QR
+- Gif not supported, need ffmpeg executable for convert mp4 to gif (Whatsapp detect sent gif as mp4 format)
+
+# Thanks to 
+- [Auties00](https://github.com/Auties00) for https://github.com/Auties00/WhatsappWeb4j
+
+---
+```
+Copyright 2020 Muhammad Utsman
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```

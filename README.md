@@ -47,7 +47,7 @@ https://ayuna-sticker.herokuapp.com/start
     - `PHONE_NUMBER`
 ## On services whatsapp
 - Run Project
-- Start qr generator
+- Start qr generator in web browser
 ```
 http://localhost:8080/qr
 ```

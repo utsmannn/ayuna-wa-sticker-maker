@@ -119,7 +119,7 @@ class WaBotServices {
         val cwebpFile = File(
             "libwebp" +
                     File.separator +
-                    "macos" +
+                    "linux" +
                     File.separator +
                     "bin" +
                     File.separator +

@@ -2,39 +2,12 @@ package com.utsman.ayunastickermaker.authentication
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.authentication.PasswordEncoderParser
-import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.userdetails.User
-import org.springframework.security.crypto.password.DelegatingPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
-
-// @Configuration
-//public class BasicAuthWebSecurityConfiguration
-//{
-//  @Bean
-//  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//    http
-//         .csrf().disable()
-//         .authorizeRequests().anyRequest().authenticated()
-//         .and()
-//         .httpBasic();
-//
-//    return http.build();
-//  }
-//
-//  @Bean
-//  public InMemoryUserDetailsManager userDetailsService() {
-//    UserDetails user = User
-//        .withUsername("user")
-//        .password("{noop}password")
-//        .roles("USER")
-//        .build();
-//    return new InMemoryUserDetailsManager(user);
-//  }
-//}
 
 @Configuration
 class SecurityConfig {
@@ -46,7 +19,9 @@ class SecurityConfig {
             .SessionFixationConfigurer().changeSessionId()
             .and()
             .csrf().disable()
-            .authorizeRequests().anyRequest().authenticated()
+            .authorizeRequests()
+            .antMatchers(HttpMethod.GET, *getPermit.toTypedArray()).permitAll()
+            .anyRequest().authenticated()
             .and()
             .httpBasic()
 
@@ -55,9 +30,12 @@ class SecurityConfig {
 
     @Bean
     fun userDetailService(): InMemoryUserDetailsManager {
+        val username = System.getenv("USERNAME")
+        val password = System.getenv("PASSWORD")
+
         val user = User
-            .withUsername("utsman")
-            .password("1234")
+            .withUsername(username)
+            .password(password)
             .roles("ADMIN")
             .build()
 
@@ -75,5 +53,12 @@ class SecurityConfig {
                 return rawPassword == encodedPassword
             }
         }
+    }
+
+    companion object {
+        val getPermit = listOf(
+            "/ping",
+            "/start"
+        )
     }
 }

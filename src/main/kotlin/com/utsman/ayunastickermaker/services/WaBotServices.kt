@@ -50,6 +50,9 @@ class WaBotServices {
                         println(" ---- ${info.chatJid().toUserJid().value()}")
                         if (content.text().lowercase() == "ping") {
                             whatsapp.sendMessage(info.chatJid(), "pong!", info)
+                        } else {
+                            val msg = "You connected to Ayuna Sticker Maker\nPlease send the image for convert to sticker"
+                            whatsapp.sendMessage(info.chatJid(), msg, info)
                         }
                     }
 
@@ -143,7 +146,7 @@ class WaBotServices {
     }
 
     private fun execInherit(vararg commands: String) {
-        println(" --- start -> ${commands.toList().toString().replace("[", "").replace("[", "").replace(",", "")}")
+        println(" --- start -> ${commands.toList().toString().replace("[", "").replace("]", "").replace(",", "")}")
         ProcessBuilder(*commands.toList().toTypedArray())
             .redirectOutput(ProcessBuilder.Redirect.INHERIT)
             .redirectError(ProcessBuilder.Redirect.INHERIT)

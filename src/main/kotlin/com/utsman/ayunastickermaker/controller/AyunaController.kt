@@ -24,7 +24,8 @@ class AyunaController {
 
     @GetMapping("/start")
     suspend fun start(): ModelAndView {
-        val apiUrl = "https://api.whatsapp.com/send?phone=15645448371"
+        val phoneNumber = System.getenv("PHONE_NUMBER")
+        val apiUrl = "https://api.whatsapp.com/send?phone=$phoneNumber"
         return ModelAndView("redirect:$apiUrl")
     }
 }

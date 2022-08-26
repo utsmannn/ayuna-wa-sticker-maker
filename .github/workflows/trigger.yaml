@@ -2,7 +2,7 @@ name: Trigger Ayuna for stay wake up
 
 on:
   schedule:
-    - cron: '3 * * * *'
+    - cron: "3 * * * *"
 jobs:
   build:
     name: Trigger ayuna

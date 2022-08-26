@@ -7,5 +7,6 @@ import org.springframework.boot.runApplication
 class AyunaStickerMakerApplication
 
 fun main(args: Array<String>) {
+    Schedulers.start()
     runApplication<AyunaStickerMakerApplication>(*args)
 }
